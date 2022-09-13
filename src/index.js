@@ -39,7 +39,10 @@ async function main() {
     // await createListing(client, docs[0]);
 
     // inserting multiple documents
-    await createMultipleListing(client, docs);
+    // await createMultipleListing(client, docs);
+
+    // reading one value
+    await findListingByName(client, "Beautiful Beach House");
   } catch (error) {
     console.error(error);
   } finally {
@@ -73,6 +76,22 @@ async function createMultipleListing(client, newListings) {
     `${results.insertedCount} new listings created with the following id(s):`
   );
   console.log(results.insertedIds);
+}
+
+async function findListingByName(client, listingName) {
+  const result = await client
+    .db(DB_NAME)
+    .collection(COLL_NAME)
+    .findOne({ name: listingName });
+
+  if (result) {
+    console.log(
+      `found a listing in the collection with the name ${listingName}:`
+    );
+    console.log(result);
+  } else {
+    console.log(`No results found with the name ${listingName}`);
+  }
 }
 
 main().catch(console.error);

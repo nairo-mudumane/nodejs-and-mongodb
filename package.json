@@ -1,16 +1,37 @@
 {
-  "name": "nodejs-and-mongodb",
+  "name": "nodejs-e-commerce-api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./src/index.js",
   "license": "MIT",
   "repository": {
-    "directory": "git@github.com:nairo-mudumane/nodejs-and-mongodb.git",
+    "directory": "https://github.com/nairo-mudumane/nodejs-e-commerce-api",
     "type": "git",
-    "url": "https://github.com/nairo-mudumane/nodejs-and-mongodb"
+    "url": "git@github.com:nairo-mudumane/nodejs-e-commerce-api.git"
   },
   "author": {
     "email": "nairomudumane@outlook.com",
     "name": "Nairo Mudumane",
     "url": "https://nairomudumane.vercel.app"
+  },
+  "engines": {
+    "node": "17.1.0",
+    "npm": "8.1.4",
+    "yarn": "1.22.18"
+  },
+  "scripts": {
+    "dev": "nodemon ./src/index.js",
+    "start": "node ./src/index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.9.1",
+    "mongoose": "^6.6.0",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "nodemon": "^2.0.19"
   }
 }

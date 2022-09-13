@@ -2,6 +2,27 @@ const { MongoClient } = require("mongodb");
 const DB_NAME = "sampleAirbnb";
 const COLL_NAME = "listingsAndReviews";
 
+const docs = [
+  {
+    name: "Lovely Loft 1",
+    summary: "A charming loft in Paris",
+    bedrooms: 4,
+    bathrooms: 2,
+  },
+  {
+    name: "Beautiful Beach House",
+    summary: "A charming loft in Paris",
+    bedrooms: 4,
+    bathrooms: 2,
+  },
+  {
+    name: "House of Fire",
+    summary: "A charming loft in Paris",
+    bedrooms: 4,
+    bathrooms: 2,
+  },
+];
+
 async function main() {
   const uri =
     "mongodb+srv://root:root@cluster0.5am1e00.mongodb.net/?retryWrites=true&w=majority";
@@ -11,13 +32,14 @@ async function main() {
   try {
     await client.connect();
     console.info("connected");
+    // list databases
     // await listDatabases(client);
-    // await createListing(client, {
-    //   name: "Lovely Loft 2",
-    //   summary: "A charming loft in Paris",
-    //   bedrooms: 4,
-    //   bathrooms: 2,
-    // });
+
+    // inserting one document
+    // await createListing(client, docs[0]);
+
+    // inserting multiple documents
+    await createMultipleListing(client, docs);
   } catch (error) {
     console.error(error);
   } finally {
@@ -39,6 +61,18 @@ async function createListing(client, newListing) {
     .collection(COLL_NAME)
     .insertOne(newListing);
   console.log(result);
+}
+
+async function createMultipleListing(client, newListings) {
+  const results = await client
+    .db(DB_NAME)
+    .collection(COLL_NAME)
+    .insertMany(newListings);
+
+  console.log(
+    `${results.insertedCount} new listings created with the following id(s):`
+  );
+  console.log(results.insertedIds);
 }
 
 main().catch(console.error);

@@ -42,7 +42,7 @@ async function main() {
     // await createMultipleListing(client, docs);
 
     // reading one value
-    await findListingByName(client, "Beautiful Beach House");
+    // await findListingByName(client, "Beautiful Beach House");
   } catch (error) {
     console.error(error);
   } finally {
